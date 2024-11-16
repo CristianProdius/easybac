@@ -120,7 +120,7 @@ const Services = () => {
       ),
       title: "Cursuri în Grup",
       description:
-        "Sesiuni interactive în grupuri mici pentru o învățare colaborativă și schimb de experiență între elevi.",
+        "Sesiuni interactive în grupuri mici pentru o învățare colaborativă și schimb de experiență între elevi, în grupe fizice și online",
     },
     {
       icon: (
@@ -138,9 +138,9 @@ const Services = () => {
           />
         </svg>
       ),
-      title: "Cursuri Online",
+      title: "Cursuri structurate și practice",
       description:
-        "Acces la platformă educațională cu lecții video, exerciții interactive și materiale de studiu disponibile 24/7.",
+        "​Vei recapitula 100% din temele incluse în programele de BAC și examenul de a 9-a aprobate de Ministerul Educației. Vei dezvolta abilități practice pentru a obține punctajul maximal conform baremului oficial. ",
     },
     {
       icon: (
@@ -178,9 +178,9 @@ const Services = () => {
           />
         </svg>
       ),
-      title: "Program Flexibil",
+      title: "Materiale adiționale asigurate",
       description:
-        "Organizează-ți orele conform programului tău, cu posibilitatea de modificare și recuperare a lecțiilor.",
+        "Beneficiezi de acces gratuit la teste rezolvate, culegeri de probleme, rezumate, scheme, tabele, formule și orele înregistrate din curs pentru a asimila mai ușor temele predate la lecții. ",
     },
     {
       icon: (

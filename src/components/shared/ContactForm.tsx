@@ -84,13 +84,8 @@ const ContactCard: React.FC<ContactCardProps> = ({
 };
 
 const Contact = () => {
-  const formRef = useRef(null);
-  const isFormInView = useInView(formRef, { once: true });
   const ctaRef = useRef(null);
   const isCTAInView = useInView(ctaRef, { once: true });
-
-  const inputClasses =
-    "w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all duration-300 hover:border-blue-300";
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
@@ -121,9 +116,7 @@ const Contact = () => {
               transition={{ delay: 0.3 }}
               className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto"
             >
-              Alătură-te celor peste 1000 de elevi care au obținut note
-              excelente la BAC prin intermediul programelor noastre de
-              pregătire.
+              Participă acum la o lecție gratuită de probă gratuită.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -138,14 +131,7 @@ const Contact = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-blue-600 px-8 py-4 rounded-xl font-medium hover:bg-blue-50 transition-colors shadow-lg"
               >
-                Începe Gratuit
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-white text-white px-8 py-4 rounded-xl font-medium hover:bg-white/10 transition-colors"
-              >
-                Programează Consultație
+                Rezervă o lecție de probă gratuită
               </motion.button>
             </motion.div>
           </div>
@@ -171,8 +157,8 @@ const Contact = () => {
             }
             title="Email"
             description="Trimite-ne un email și îți vom răspunde în cel mai scurt timp posibil."
-            link="mailto:contact@bac.md"
-            linkText="contact@easybac.md"
+            link="mailto:info.easybac@gmail.com"
+            linkText="info.easybac@gmail.com"
             index={0}
           />
           <ContactCard
@@ -193,8 +179,8 @@ const Contact = () => {
             }
             title="Telefon"
             description="Suntem disponibili pentru a răspunde la întrebările tale."
-            link="tel:+37312345678"
-            linkText="+373 505 94 047"
+            link="tel:+373069244099"
+            linkText="+373 069 244 099"
             index={0}
           />
           <ContactCard
@@ -221,13 +207,13 @@ const Contact = () => {
             }
             title="Locație"
             description="Vino să ne vizitezi la sediul nostru din Chișinău."
-            link="#"
+            link="https://maps.app.goo.gl/9m9Ucu6DH8ESghc27"
             linkText="Vezi pe hartă"
             index={0}
           />
         </div>
 
-        {/* Contact Form */}
+        {/* Contact Form 
         <motion.div
           ref={formRef}
           initial={{ opacity: 0, y: 50 }}
@@ -303,7 +289,7 @@ const Contact = () => {
               </motion.button>
             </motion.form>
           </div>
-        </motion.div>
+        </motion.div>*/}
       </div>
     </section>
   );

@@ -13,12 +13,23 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
       <Hero />
-      <Services />
-      <Testimonials />
-      <Pricing />
+      <section id="about">
+        <Services />
+      </section>
+      <section id="services">
+        <Pricing />
+      </section>
+
+      <section id="testimonials">
+        <Testimonials />
+      </section>
+
       <Team />
       <FAQ />
-      <Contact />
+
+      <section id="contact">
+        <Contact />
+      </section>
       <Footer />
     </main>
   );

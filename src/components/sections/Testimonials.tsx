@@ -9,6 +9,8 @@ interface Student {
   testimonial: string;
 }
 
+{
+  /* 
 const StarRating = () => {
   return (
     <div className="flex mb-6">
@@ -27,7 +29,8 @@ const StarRating = () => {
       ))}
     </div>
   );
-};
+};*/
+}
 
 const TestimonialCard = ({
   student,
@@ -45,35 +48,75 @@ const TestimonialCard = ({
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
-      whileHover={{ y: -10, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-      className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 transform-gpu"
+      whileHover={{ y: -10, transition: { duration: 0.2 } }}
+      className="relative bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
     >
-      <StarRating />
+      {/* Decorative Elements */}
+      <div className="absolute top-0 right-0 w-20 h-20 bg-blue-50 rounded-bl-full opacity-50" />
+      <div className="absolute bottom-0 left-0 w-16 h-16 bg-blue-50 rounded-tr-full opacity-50" />
 
+      {/* Quote Icon */}
+      <div className="absolute -top-4 -left-4 bg-[#377DFF] rounded-full p-3 shadow-lg">
+        <svg
+          className="w-6 h-6 text-white"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+        </svg>
+      </div>
+
+      {/* Star Rating */}
+      <div className="flex justify-center mb-6">
+        {[...Array(5)].map((_, i) => (
+          <motion.svg
+            key={i}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: i * 0.1 }}
+            className="w-5 h-5 text-yellow-400 mx-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </motion.svg>
+        ))}
+      </div>
+
+      {/* Testimonial Text */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
-        className="text-gray-600 mb-6 leading-relaxed"
+        className="text-gray-600 mb-8 leading-relaxed relative z-10 text-center"
       >
         &quot;{student.testimonial}&quot;
       </motion.p>
 
+      {/* Student Info */}
       <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.5, delay: index * 0.2 + 0.4 }}
-        className="flex items-center"
+        className="flex items-center justify-center relative z-10"
       >
-        <motion.img
-          whileHover={{ scale: 1.1 }}
-          src={student.image}
-          alt={student.name}
-          className="w-12 h-12 rounded-full object-cover ring-2 ring-[#377DFF]/20"
-        />
-        <div className="ml-4">
-          <h4 className="font-semibold text-[#2D3436]">{student.name}</h4>
-          <p className="text-sm text-gray-500">Nota BAC: {student.grade}</p>
+        <div className="flex flex-col items-center">
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            src={student.image}
+            alt={student.name}
+            className="w-16 h-16 rounded-full object-cover ring-4 ring-[#377DFF]/20 mb-3"
+          />
+          <div className="text-center">
+            <h4 className="font-semibold text-[#2D3436] mb-1">
+              {student.name}
+            </h4>
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-600">
+              <span className="text-sm font-medium">
+                Nota BAC: {student.grade}
+              </span>
+            </div>
+          </div>
         </div>
       </motion.div>
     </motion.div>
@@ -119,33 +162,54 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      name: "Maria Popescu",
+      name: "Alexandru Vîzdoagă",
       grade: "9.85",
       image: "/students/1.png",
       testimonial:
         "Frecventând cursurile de limba si literatura romana, vă pot spune că EasyBac este o resursă excelentă pentru elevii care își doresc să-și consolideze cunoștințele de limba și literatura română și să se pregătească mai bine pentru examenul de bacalaureat. Cursurile sunt concepute astfel încât să acopere întregul program și să ofere elevilor ocazia de a înțelege mai bine subiectele și de a-și dezvolta abilitățile de analiză și interpretare. Profesoara Cernavca Olga are un fel anume de a explica temele pentru fiecare să înțeleagă. Recomand!",
     },
     {
-      name: "Ion Rusu",
+      name: "Vlada Comendant",
       grade: "9.60",
       image: "/students/2.png",
       testimonial:
         "Recomand cu cea mai mare incredere!! Cu ajutorul cursurilor de istorie predat de Dionis am reusit intr-un timp foarte scurt sa ma pregatesc foarte bine pentru bac pentru o nota buna, lectiile de la curs mi-au dat ceea ce nu am putut primi la liceu in toti anii de invatamant. Pe langa faptul ca acumulati cunostinte pentru sustinerea unui examen semnificativ, ele va vor ajuta si in viata cotidiana.",
     },
     {
-      name: "Ana Munteanu",
+      name: "Adelina Caramanuța",
       grade: "9.90",
       image: "/students/3.png",
       testimonial:
         "Recomand cu cea mai mare incredere EasyBac! sunt o echipa foarte organizata și responsabila. Datorita lor avem încredere în puterile noastre☀️lectiile sunt foarte atractive si interesante iar mentorii ne susțin în toate si ne motiveaza 😊 La engleza avem oportunitatea de a ne întari cunoștințele si sunt sigura ca rezultatele vor fi frumoase datorita Alinei Țurcanu. Mulțumim EasyBac",
     },
+    {
+      name: "Olea Creciun",
+      grade: "9.50",
+      image: "/students/4.png",
+      testimonial:
+        "As vrea sa spun părerea mea despre învățătorul Dionis Smoleac, acest învățător este 10/10, Dumnealui chiar poate sa atragă și sa motiveze sa înveți, la lecțiile Dumnealui am o plăcere sa vin și am o plăcere sa îl ascult și este foarte rar de întâlnit așa profesori și cel mai important după lecțiile acestui învățător am început chiar sa înțeleg bine istoria",
+    },
+    {
+      name: "Renat Elas",
+      grade: "9.47",
+      image: "/students/5.png",
+      testimonial:
+        "Mulțumesc EasyBac și în special profesorilor la disciplinele de geografie (Roxana), matematica (Alina) , limba și literatura română (Ion), cu ajutorul dumneavoastră mă pot descurca cu ușurință la disciplinele date. Profesorii sunt bine pregătiți și cel mai important foarte răbdători.",
+    },
+    {
+      name: "Mădălina Filimon",
+      grade: "9.50",
+      image: "/students/6.png",
+      testimonial:
+        "Materiale de învățare adaptate la nevoile elevilor - Easy Bac poate oferi cursuri personalizate în funcție de nivelul de cunoștințe și stilul de învățare al elevilor. Recomand cu toată încredere, în special cursul de matematica și biologie, care te ajuta sa însușești bine materialul,abordare individuala și multe exerciții practice. Mulțumesc Danielei și Irinei!",
+    },
   ];
 
   const stats = [
     { number: "98%", text: "Rată de promovare" },
-    { number: "1000+", text: "Elevi pregătiți" },
-    { number: "8.9", text: "Nota medie BAC" },
-    { number: "15+", text: "Ani de experiență" },
+    { number: "1500+", text: "Elevi pregătiți" },
+    { number: "8.5", text: "Nota medie BAC" },
+    { number: "5+", text: "Ani de experiență" },
   ];
 
   return (

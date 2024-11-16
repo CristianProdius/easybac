@@ -1,6 +1,14 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import Image from "next/image";
 
 interface Teacher {
   name: string;
@@ -18,103 +26,51 @@ const TeacherCard = ({
   index: number;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true });
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        delay: index * 0.2,
-      },
-    },
-  };
-
-  const imageVariants = {
-    hover: { scale: 1.1, transition: { duration: 0.4 } },
-    initial: { scale: 1, transition: { duration: 0.4 } },
-  };
-
-  const overlayVariants = {
-    hover: { opacity: 1, transition: { duration: 0.3 } },
-    initial: { opacity: 0, transition: { duration: 0.3 } },
-  };
-
-  const socialVariants = {
-    hover: {
-      opacity: 1,
-      y: 0,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-    },
-    initial: { opacity: 0, y: 20 },
-  };
-
-  const iconVariants = {
-    hover: { y: 0, opacity: 1 },
-    initial: { y: 20, opacity: 0 },
-  };
 
   return (
     <motion.div
-      ref={cardRef}
-      variants={cardVariants}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      className="group"
+      className="px-4 group cursor-pointer"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: index * 0.2 }}
     >
-      <motion.div
+      <div
         className="relative overflow-hidden rounded-2xl aspect-[3/4] shadow-lg"
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        <motion.img
+        <img
           src={teacher.image}
           alt={teacher.name}
-          className="w-full h-full object-cover"
-          variants={imageVariants}
-          animate={isHovered ? "hover" : "initial"}
+          className={`w-full h-full object-cover transition-transform duration-300 ${
+            isHovered ? "scale-110" : "scale-100"
+          }`}
         />
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
-          variants={overlayVariants}
-          animate={isHovered ? "hover" : "initial"}
+        <div
+          className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
         >
-          <motion.div
-            className="absolute bottom-6 left-6 flex space-x-4"
-            variants={socialVariants}
-            initial="initial"
-            animate={isHovered ? "hover" : "initial"}
-          >
+          <div className="absolute bottom-6 left-6 flex space-x-4">
             {teacher.social.map((link, i) => (
-              <motion.a
+              <a
                 key={i}
-                variants={iconVariants}
-                whileHover={{ scale: 1.2, color: "#377DFF" }}
                 href={link.url}
-                className="text-white transition-colors"
+                className="text-white hover:text-[#377DFF] hover:scale-110 transform transition-all duration-300"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {link.icon}
-              </motion.a>
+              </a>
             ))}
-          </motion.div>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ delay: index * 0.2 + 0.3 }}
-        className="mt-6 space-y-2"
-      >
+          </div>
+        </div>
+      </div>
+      <div className="mt-6 space-y-2">
         <h3 className="text-xl font-bold text-[#2D3436]">{teacher.name}</h3>
         <p className="text-[#377DFF] font-medium">{teacher.subject}</p>
         <p className="text-gray-600 leading-relaxed">{teacher.description}</p>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
@@ -127,11 +83,11 @@ const Team = () => {
 
   const teachers = [
     {
-      name: "Prof. Ion Rusu",
-      subject: "Matematică",
+      name: "Dionis Smoleac",
+      subject: "Istorie ",
       image: "/team/1.png",
       description:
-        "Profesor grad didactic superior, autor de manuale și culegeri pentru BAC.",
+        "Mentor, olimpic republican 2015-2018, autor de cercetări și studii istorice",
       social: [
         {
           icon: (
@@ -152,11 +108,10 @@ const Team = () => {
       ],
     },
     {
-      name: "Dr. Ana Popescu",
-      subject: "Limba Română",
+      name: "Daniela Banu",
+      subject: "Matematică",
       image: "/team/2.png",
-      description:
-        "Doctor în filologie cu peste 15 ani de experiență în pregătirea pentru BAC.",
+      description: "Mentor, olimpic republican, experiență pedagogică de 6 ani",
       social: [
         {
           icon: (
@@ -178,11 +133,62 @@ const Team = () => {
     },
 
     {
-      name: "Prof. Maria Lungu",
-      subject: "Istorie",
+      name: "Roxana Munteanu",
+      subject: "Geografie",
       image: "/team/3.png",
       description:
-        "Specializată în metodologii moderne de predare și învățare activă.",
+        "Mentor, olimpic republican, profesor la Liceul Orizont din Chișinău",
+      social: [
+        {
+          icon: (
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          ),
+          url: "#",
+        },
+      ],
+    },
+
+    {
+      name: "Ion Latu",
+      subject: "Limba română",
+      image: "/team/3.png",
+      description:
+        "Mentor, olimpic republican, autor de cercetării și studii filologice",
+      social: [
+        {
+          icon: (
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          ),
+          url: "#",
+        },
+      ],
+    },
+
+    {
+      name: "Irina Petcu",
+      subject: "Biologie",
+      image: "/team/3.png",
+      description: "Mentor, experiență pedagogică de 5 ani",
+      social: [
+        {
+          icon: (
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          ),
+          url: "#",
+        },
+      ],
+    },
+    {
+      name: "Andrei Ciursin",
+      subject: "Chimie",
+      image: "/team/3.png",
+      description: "Mentor, olimpic internațional ",
       social: [
         {
           icon: (
@@ -247,11 +253,39 @@ const Team = () => {
           </motion.p>
         </motion.div>
 
-        {/* Teachers Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {teachers.map((teacher, index) => (
-            <TeacherCard key={index} teacher={teacher} index={index} />
-          ))}
+        {/* Slider Section */}
+        <div className="container mx-auto px-6">
+          <div className="mt-16 relative">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              navigation
+              pagination={{
+                clickable: true,
+                bulletActiveClass: "swiper-pagination-bullet-active",
+              }}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                },
+                1024: {
+                  slidesPerView: 3,
+                },
+              }}
+              className="!pb-14"
+            >
+              {teachers.map((teacher, index) => (
+                <SwiperSlide key={index}>
+                  <TeacherCard teacher={teacher} index={index} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
 
         {/* Join Team CTA */}

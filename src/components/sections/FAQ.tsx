@@ -89,7 +89,7 @@ const FAQ = () => {
     {
       question: "Cum se desfășoară lecțiile de pregătire pentru BAC?",
       answer:
-        "Lecțiile se desfășoară atât online cât și fizic, în funcție de preferințele tale. Programul este flexibil și adaptabil, cu sesiuni individuale sau în grup mic. Fiecare lecție durează 90 de minute și include teorie, exerciții practice și simulări de examen.",
+        "Fiecare lecție durează 90 de minute și include teorie, exerciții practice și simulări de examen.",
     },
     {
       question: "Care este rata de promovare a elevilor pregătiți de voi?",
@@ -99,12 +99,17 @@ const FAQ = () => {
     {
       question: "Cât timp înainte de BAC ar trebui să încep pregătirea?",
       answer:
-        "Recomandăm începerea pregătirii cu cel puțin 6 luni înainte de examen pentru rezultate optime. Acest interval permite acoperirea completă a materiei, rezolvarea multiplelor teste și simulări, precum și perfecționarea tehnicilor de rezolvare.",
+        "Lansăm grupe noi la începutul fiecărei luni. Cursul este așa structurat, ca să reușiți să asimilați toată informația, indiferent de perioada din care ați început pregătirile. ",
     },
     {
       question: "Cum mă pot înscrie la cursurile de pregătire?",
       answer:
-        "Înscrierea se poate face online prin intermediul platformei noastre sau direct la sediul nostru. După completarea formularului, vei fi contactat pentru o evaluare inițială gratuită și stabilirea planului personalizat de pregătire.",
+        "Înscrierea se poate face online prin intermediul platformei noastre sau direct la sediul nostru. După completarea formularului, vei fi contactat pentru o evaluare inițială gratuită și stabilirea planului personalizat de pregătire. Sau direct printr-un apel telefonic la 0 (69) 244099",
+    },
+    {
+      question: "Prima lecție este gratuită? ",
+      answer:
+        "Da, prima lecție a cursului este gratuită, de probă, ca să vezi dacă ești satisfăcut de modul de predare a profesorului și structura cursului. Dacă iai decizia de a continua cursul, vei achita integral suma într-un termen prestabilit.  ",
     },
     {
       question: "Oferiti materiale de studiu suplimentare?",
