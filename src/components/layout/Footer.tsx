@@ -1,4 +1,7 @@
+"use cleint";
 import React from "react";
+import NavigationItem from "./NavigationItem";
+import NewsletterForm from "../shared/NewsletterForm";
 
 const Footer = () => {
   return (
@@ -74,46 +77,11 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-6">Navigare</h3>
             <ul className="space-y-4">
-              <li>
-                <a
-                  href="/"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Acasă
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Despre Noi
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/services"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Servicii
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/testimonials"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Testimoniale
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
+              <NavigationItem href="#">Acasă</NavigationItem>
+              <NavigationItem href="#about">Despre Noi</NavigationItem>
+              <NavigationItem href="#services">Cursuri</NavigationItem>
+              <NavigationItem href="#testimonials">Recenzii</NavigationItem>
+              <NavigationItem href="#contact">Contact</NavigationItem>
             </ul>
           </div>
 
@@ -190,25 +158,7 @@ const Footer = () => {
 
           {/* Newsletter */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">
-              Abonează-te la Newsletter
-            </h3>
-            <p className="text-gray-400 mb-4">
-              Primește noutăți și sfaturi pentru pregătirea BAC-ului
-            </p>
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="Email-ul tău"
-                className="w-full px-4 py-3 rounded-xl bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#377DFF]"
-              />
-              <button
-                type="submit"
-                className="w-full bg-[#377DFF] text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-600 transition-colors"
-              >
-                Abonează-te
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import TopGContactForm from "../shared/topGContactForm";
 
 interface Student {
   name: string;
@@ -212,97 +213,112 @@ const Testimonials = () => {
     { number: "5+", text: "Ani de experiență" },
   ];
 
+  const [showContactForm, setShowContactForm] = useState(false);
+  const selectedCourse = ""; // Define the selectedCourse variable
+
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <motion.div
-        className="container mx-auto px-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        {/* Header */}
+    <>
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
         <motion.div
-          ref={headerRef}
-          className="max-w-2xl mx-auto text-center mb-16"
+          className="container mx-auto px-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
         >
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={
-              isHeaderInView
-                ? { opacity: 1, scale: 1 }
-                : { opacity: 0, scale: 0.8 }
-            }
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm mb-6"
+            ref={headerRef}
+            className="max-w-2xl mx-auto text-center mb-16"
           >
-            <span className="bg-[#377DFF] text-white px-3 py-1 rounded-full text-sm">
-              Testimoniale
-            </span>
-            <span className="ml-2 text-sm text-gray-600">
-              Rezultate Dovedite
-            </span>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={
+                isHeaderInView
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 0.8 }
+              }
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm mb-6"
+            >
+              <span className="bg-[#377DFF] text-white px-3 py-1 rounded-full text-sm">
+                Testimoniale
+              </span>
+              <span className="ml-2 text-sm text-gray-600">
+                Rezultate Dovedite
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={
+                isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-4xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-6"
+            >
+              Ce Spun Elevii Noștri
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={
+                isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-gray-600 text-lg"
+            >
+              Descoperă experiențele elevilor care și-au îndeplinit obiectivele
+              prin intermediul programelor noastre de pregătire
+            </motion.p>
           </motion.div>
 
-          <motion.h2
+          {/* Statistics */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            {stats.map((stat, index) => (
+              <StatItem
+                key={index}
+                number={stat.number}
+                text={stat.text}
+                index={index}
+              />
+            ))}
+          </div>
+
+          {/* Testimonials Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                student={testimonial}
+                index={index}
+              />
+            ))}
+          </div>
+
+          {/* CTA Section */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-6"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="mt-16 text-center"
           >
-            Ce Spun Elevii Noștri
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-gray-600 text-lg"
-          >
-            Descoperă experiențele elevilor care și-au îndeplinit obiectivele
-            prin intermediul programelor noastre de pregătire
-          </motion.p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowContactForm(true)}
+              className="bg-[#377DFF] text-white px-8 py-4 rounded-xl font-medium hover:bg-blue-600 transition-colors shadow-lg hover:shadow-xl"
+            >
+              Începe Pregătirea
+            </motion.button>
+          </motion.div>
         </motion.div>
-
-        {/* Statistics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-          {stats.map((stat, index) => (
-            <StatItem
-              key={index}
-              number={stat.number}
-              text={stat.text}
-              index={index}
-            />
-          ))}
-        </div>
-
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} student={testimonial} index={index} />
-          ))}
-        </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-16 text-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-[#377DFF] text-white px-8 py-4 rounded-xl font-medium hover:bg-blue-600 transition-colors shadow-lg hover:shadow-xl"
-          >
-            Începe Pregătirea
-          </motion.button>
-        </motion.div>
-      </motion.div>
-    </section>
+      </section>
+      <TopGContactForm
+        isOpen={showContactForm}
+        onClose={() => setShowContactForm(false)}
+        preselectedCourse={selectedCourse}
+      />
+    </>
   );
 };
 

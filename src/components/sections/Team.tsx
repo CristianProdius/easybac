@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import TopGContactForm from "../shared/topGContactForm";
 
 // Import Swiper styles
 import "swiper/css";
@@ -79,6 +80,8 @@ const Team = () => {
   const isHeaderInView = useInView(headerRef, { once: true });
   const ctaRef = useRef(null);
   const isCTAInView = useInView(ctaRef, { once: true });
+  const [showTeachertForm, setShowTeachertForm] = useState(false);
+  const selectedCourse = ""; // Define the selectedCourse variable
 
   const teachers = [
     {
@@ -202,128 +205,141 @@ const Team = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 20 }}
-          animate={
-            isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-          }
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto text-center mb-16"
-        >
+    <>
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+        <div className="container mx-auto px-6">
+          {/* Header */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={isHeaderInView ? { scale: 1 } : { scale: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm mb-6"
+            ref={headerRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={
+              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+            }
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl mx-auto text-center mb-16"
           >
-            <span className="bg-gradient-to-r from-[#377DFF] to-blue-600 text-white px-3 py-1 rounded-full text-sm">
-              Echipa
-            </span>
-            <span className="ml-2 text-sm text-gray-600">
-              Profesori Experimentați
-            </span>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={isHeaderInView ? { scale: 1 } : { scale: 0 }}
+              transition={{ delay: 0.2 }}
+              className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm mb-6"
+            >
+              <span className="bg-gradient-to-r from-[#377DFF] to-blue-600 text-white px-3 py-1 rounded-full text-sm">
+                Echipa
+              </span>
+              <span className="ml-2 text-sm text-gray-600">
+                Profesori Experimentați
+              </span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={
+                isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ delay: 0.3 }}
+              className="text-4xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-6"
+            >
+              Experți în Pregătirea pentru BAC
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={
+                isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ delay: 0.4 }}
+              className="text-gray-600 text-lg"
+            >
+              Profesorii noștri sunt dedicați succesului tău, cu ani de
+              experiență în pregătirea elevilor pentru examenul de bacalaureat
+            </motion.p>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            transition={{ delay: 0.3 }}
-            className="text-4xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-6"
-          >
-            Experți în Pregătirea pentru BAC
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={
-              isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-            }
-            transition={{ delay: 0.4 }}
-            className="text-gray-600 text-lg"
-          >
-            Profesorii noștri sunt dedicați succesului tău, cu ani de experiență
-            în pregătirea elevilor pentru examenul de bacalaureat
-          </motion.p>
-        </motion.div>
-
-        {/* Slider Section */}
-        <div className="container mx-auto px-6">
-          <div className="mt-16 relative">
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation
-              pagination={{
-                clickable: true,
-                bulletActiveClass: "swiper-pagination-bullet-active",
-              }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                640: {
-                  slidesPerView: 2,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
-              }}
-              className="!pb-14"
-            >
-              {teachers.map((teacher, index) => (
-                <SwiperSlide key={index}>
-                  <TeacherCard teacher={teacher} index={index} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+          {/* Slider Section */}
+          <div className="container mx-auto px-6">
+            <div className="mt-16 relative">
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={30}
+                slidesPerView={1}
+                navigation
+                pagination={{
+                  clickable: true,
+                  bulletActiveClass: "swiper-pagination-bullet-active",
+                }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                  },
+                }}
+                className="!pb-14"
+              >
+                {teachers.map((teacher, index) => (
+                  <SwiperSlide key={index}>
+                    <TeacherCard teacher={teacher} index={index} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
           </div>
+
+          {/* Join Team CTA */}
+          <motion.div
+            ref={ctaRef}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isCTAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6 }}
+            className="mt-20 text-center bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-12 shadow-lg"
+          >
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              animate={
+                isCTAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ delay: 0.2 }}
+              className="text-2xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-4"
+            >
+              Devino Parte din Echipa Noastră
+            </motion.h3>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={
+                isCTAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+              }
+              transition={{ delay: 0.3 }}
+              className="text-gray-600 mb-8 max-w-2xl mx-auto"
+            >
+              Suntem mereu în căutare de profesori pasionați și dedicați care
+              doresc să ajute elevii să exceleze la BAC.
+            </motion.p>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowTeachertForm(true)}
+              className="bg-gradient-to-r from-[#377DFF] to-blue-600 text-white px-8 py-4 rounded-xl font-medium hover:shadow-lg transition-shadow"
+            >
+              Aplică ca Profesor
+            </motion.button>
+          </motion.div>
         </div>
-
-        {/* Join Team CTA */}
-        <motion.div
-          ref={ctaRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isCTAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="mt-20 text-center bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-12 shadow-lg"
-        >
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            animate={isCTAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2 }}
-            className="text-2xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-4"
-          >
-            Devino Parte din Echipa Noastră
-          </motion.h3>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isCTAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3 }}
-            className="text-gray-600 mb-8 max-w-2xl mx-auto"
-          >
-            Suntem mereu în căutare de profesori pasionați și dedicați care
-            doresc să ajute elevii să exceleze la BAC.
-          </motion.p>
-
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-[#377DFF] to-blue-600 text-white px-8 py-4 rounded-xl font-medium hover:shadow-lg transition-shadow"
-          >
-            Aplică ca Profesor
-          </motion.button>
-        </motion.div>
-      </div>
-    </section>
+      </section>
+      <TopGContactForm
+        isOpen={showTeachertForm}
+        onClose={() => setShowTeachertForm(false)}
+        preselectedCourse={selectedCourse}
+        isTeacherForm={true}
+      />
+    </>
   );
 };
 

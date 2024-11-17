@@ -15,21 +15,16 @@ export async function POST(req: Request) {
 
     const sheets = google.sheets({ version: "v4", auth });
 
-    // Determine which sheet to use based on form type
-    const sheetName = body.isTeacherForm ? "Teachers" : "Students";
-
+    // Note the different range here - using the Newsletter sheet
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: `${sheetName}!A:E`, // Using different sheets for different roles
+      range: "Newsletter!A:B", // Using the Newsletter sheet
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [
           [
             new Date().toISOString(), // Timestamp
-            body.name, // Name
-            body.phone, // Phone
-            body.course, // Course/Subject
-            body.isTeacherForm ? body.experience : "N/A", // Experience (only for teachers)
+            body.email, // Email
           ],
         ],
       },
@@ -37,10 +32,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Submission error:", error);
-    return NextResponse.json(
-      { error: "Failed to submit form" },
-      { status: 500 }
-    );
+    console.error("Newsletter subscription error:", error);
+    return NextResponse.json({ error: "Failed to subscribe" }, { status: 500 });
   }
 }

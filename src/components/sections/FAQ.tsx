@@ -201,6 +201,22 @@ const FAQ = () => {
           <motion.button
             whileHover={{ x: 10 }}
             className="inline-flex items-center text-[#377DFF] font-medium group"
+            onClick={(e) => {
+              e.preventDefault();
+              const contactSection = document.querySelector("#contact");
+              if (contactSection) {
+                const offset = 80; // Adjust this value based on your navbar height
+                const elementPosition =
+                  contactSection.getBoundingClientRect().top;
+                const offsetPosition =
+                  elementPosition + window.pageYOffset - offset;
+
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth",
+                });
+              }
+            }}
           >
             <span className="group-hover:underline">
               Contactează-ne pentru mai multe detalii

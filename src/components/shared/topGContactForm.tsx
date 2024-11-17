@@ -6,17 +6,21 @@ interface ContactFormProps {
   isOpen: boolean;
   onClose: () => void;
   preselectedCourse?: string;
+  isTeacherForm?: boolean;
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({
   isOpen,
   onClose,
   preselectedCourse = "",
+  isTeacherForm = false,
 }) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     course: preselectedCourse,
+    role: isTeacherForm ? "teacher" : "student",
+    experience: "",
   });
 
   useEffect(() => {
@@ -52,7 +56,10 @@ const ContactForm: React.FC<ContactFormProps> = ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          isTeacherForm: isTeacherForm, // Add this line
+        }),
       });
 
       if (!response.ok) throw new Error("Submission failed");
@@ -61,7 +68,13 @@ const ContactForm: React.FC<ContactFormProps> = ({
       setTimeout(() => {
         onClose();
         setShowConfirmation(false);
-        setFormData({ name: "", phone: "", course: preselectedCourse });
+        setFormData({
+          name: "",
+          phone: "",
+          course: preselectedCourse,
+          experience: "",
+          role: isTeacherForm ? "teacher" : "student",
+        });
       }, 3000);
     } catch {
       setError("A apărut o eroare. Vă rugăm să încercați din nou.");
@@ -103,7 +116,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
             exit={{ scale: 0.95, opacity: 0 }}
             className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md relative"
           >
-            {/* Close Button */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -148,19 +160,15 @@ const ContactForm: React.FC<ContactFormProps> = ({
             ) : (
               <>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Înregistrare la curs
+                  {isTeacherForm ? "Devino Profesor" : "Înregistrare la curs"}
                 </h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Nume și Prenume
                     </label>
                     <input
                       type="text"
-                      id="name"
                       name="name"
                       required
                       value={formData.name}
@@ -171,15 +179,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Număr de telefon
                     </label>
                     <input
                       type="tel"
-                      id="phone"
                       name="phone"
                       required
                       value={formData.phone}
@@ -190,21 +194,23 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="course"
-                      className="block text-sm font-medium text-gray-700 mb-1"
-                    >
-                      Cursul
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {isTeacherForm
+                        ? "Disciplina dorită pentru predare"
+                        : "Cursul"}
                     </label>
                     <select
-                      id="course"
                       name="course"
                       required
                       value={formData.course}
                       onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
-                      <option value="">Selectează cursul</option>
+                      <option value="">
+                        {isTeacherForm
+                          ? "Selectează disciplina"
+                          : "Selectează cursul"}
+                      </option>
                       {courses.map((course) => (
                         <option key={course} value={course}>
                           {course}
@@ -212,6 +218,24 @@ const ContactForm: React.FC<ContactFormProps> = ({
                       ))}
                     </select>
                   </div>
+
+                  {isTeacherForm && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Experiență în predare (ani)
+                      </label>
+                      <input
+                        type="number"
+                        name="experience"
+                        required
+                        min="0"
+                        value={formData.experience}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Ex: 5"
+                      />
+                    </div>
+                  )}
 
                   {error && (
                     <p className="text-red-500 text-sm mt-2">{error}</p>
