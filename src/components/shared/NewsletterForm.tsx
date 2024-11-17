@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const NewsletterForm = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +41,7 @@ const NewsletterForm = () => {
       setTimeout(() => {
         setStatus("idle");
       }, 3000);
-    } catch (error) {
+    } catch {
       setStatus("error");
       setErrorMessage("A apărut o eroare. Vă rugăm să încercați din nou.");
     }
