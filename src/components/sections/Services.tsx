@@ -140,7 +140,7 @@ const Services = () => {
       ),
       title: "Cursuri structurate și practice",
       description:
-        "​Vei recapitula 100% din temele incluse în programele de BAC și examenul de a 9-a aprobate de Ministerul Educației. Vei dezvolta abilități practice pentru a obține punctajul maximal conform baremului oficial. ",
+        "La cursurile EasyBac vei recapitula 100% din temele incluse în programele de BAC și examenul de a 9-a aprobate de Ministerul Educației, și chiar mai mult",
     },
     {
       icon: (

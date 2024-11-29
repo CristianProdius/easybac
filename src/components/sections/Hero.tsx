@@ -174,7 +174,7 @@ const Hero = () => {
               />
               <motion.img
                 src="/images/student-studying.png"
-                alt="Student studying"
+                alt="student ce invata"
                 className="relative z-10 w-full rounded-2xl shadow-lg"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

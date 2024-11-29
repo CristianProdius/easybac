@@ -14,8 +14,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Easy Bac",
-  description: "Platforma de pregătire pentru examenul de Bacalaureat",
+  title: "bac.md",
+  description:
+    "Cursurile noastre. Cursuri online și fizice pentru BAC, examen de a 9-a, teze semestriale și facultate. Curs de BAC la istoria românilor și universală.",
 };
 
 export default function RootLayout({

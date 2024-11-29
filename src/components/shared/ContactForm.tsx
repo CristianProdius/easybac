@@ -109,7 +109,7 @@ const Contact = () => {
                 transition={{ delay: 0.2 }}
                 className="text-4xl font-bold text-white mb-6"
               >
-                Pregătește-te pentru BAC cu cei mai buni
+                Participă acum la o lecție gratuită de probă!
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -119,7 +119,7 @@ const Contact = () => {
                 transition={{ delay: 0.3 }}
                 className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto"
               >
-                Participă acum la o lecție gratuită de probă gratuită.
+                Începe pregătirile de examen cu EasyBac!
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

@@ -256,7 +256,7 @@ const Testimonials = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="text-4xl font-bold bg-gradient-to-r from-[#2D3436] to-[#377DFF] bg-clip-text text-transparent mb-6"
             >
-              Ce Spun Elevii Noștri
+              Recenziile absolvenților EasyBac
             </motion.h2>
 
             <motion.p
@@ -267,8 +267,9 @@ const Testimonials = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-gray-600 text-lg"
             >
-              Descoperă experiențele elevilor care și-au îndeplinit obiectivele
-              prin intermediul programelor noastre de pregătire
+              În ultimii 4 ani, mentorii EasyBac au instruit peste 1000 de
+              elevi! Suntem fericiți să obținem feedback sincer din partea
+              absolvenților noștrii
             </motion.p>
           </motion.div>
 
