@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://bac.md/sitemap.xml
+
+# Host
+Host: https://bac.md
