@@ -24,7 +24,7 @@ export default function Home() {
         <Testimonials />
       </section>
 
-      <Team />
+      {/*<Team />*/}
       <FAQ />
 
       <section id="contact">
