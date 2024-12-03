@@ -104,7 +104,7 @@ const Footer = () => {
                   />
                 </svg>
                 <a
-                  href="mailto:contact@bac.md"
+                  href="mailto:info.easybac@gmail.com"
                   className="hover:text-white transition-colors"
                 >
                   info.easybac@gmail.com

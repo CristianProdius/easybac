@@ -3,7 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Pricing from "@/components/sections/Pricing";
 import Services from "@/components/sections/Services";
 import Testimonials from "@/components/sections/Testimonials";
-import Team from "@/components/sections/Team";
+//import Team from "@/components/sections/Team";
 import FAQ from "@/components/sections/FAQ";
 import Contact from "@/components/shared/ContactForm";
 import Footer from "@/components/layout/Footer";
