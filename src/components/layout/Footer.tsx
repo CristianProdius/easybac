@@ -2,6 +2,8 @@
 import React from "react";
 import NavigationItem from "./NavigationItem";
 import NewsletterForm from "../shared/NewsletterForm";
+import Image from 'next/image';
+import easybacLogo from '/public/easybac.svg';
 
 const Footer = () => {
   return (
@@ -11,7 +13,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand Column */}
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Easy BAC.md</h2>
+          <div className="flex justify-between items-center">
+            <Image
+              src={easybacLogo}
+              alt="Easy BAC.md"
+              width={100}
+              height={50}
+              className="filter invert"
+            />
+          </div>
             <p className="text-gray-400 leading-relaxed">
               Platformă de pregătire pentru examenul de bacalaureat, examenul de
               clasa a 9-a, tezele semestriale cu profesori experimentați și
@@ -45,7 +55,7 @@ const Footer = () => {
               </a>
               {/* Telegram Icon */}
               <a
-                href="https://t.me/easybac"
+                href="https://t.me/easybacfamily"
                 className="hover:text-[#377DFF] transition-colors"
               >
                 <svg

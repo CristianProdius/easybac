@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Twemoji } from "react-emoji-render";
 import TopGContactForm from "../shared/topGContactForm";
 
 interface Course {
@@ -93,7 +94,7 @@ const CourseCard = ({
             whileHover="hover"
             className="text-3xl"
           >
-            {course.icon}
+            <Twemoji text={course.icon} />
           </motion.span>
           <motion.h3
             variants={contentVariants}
@@ -202,7 +203,7 @@ const Courses = () => {
       name: "BAC la Limba Străină",
       description: "Cursuri practice la Limba Engleză și Franceză pentru BAC",
       lessons: 18,
-      icon: "🌍",
+      icon: "🇬🇧🇫🇷",
     },
     {
       name: "BAC la Geografie",

@@ -16,7 +16,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "bac.md",
   description:
-    "Cursurile noastre. Cursuri online și fizice pentru BAC, examen de a 9-a, teze semestriale și facultate. Curs de BAC la istoria românilor și universală.",
+    "Meditații, lecții și ore particulare pentru pregătirea examenelor. Adițional, oferim suport educațional complet.",
 };
 
 export default function RootLayout({

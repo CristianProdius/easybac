@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TopGContactForm from "../shared/topGContactForm";
+import Image from 'next/image';
+import easybacLogo from '/public/easybac.svg';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,10 +90,10 @@ const Navbar = () => {
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center">
             {/* Logo */}
+          
+            
             <motion.div variants={itemVariants} className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-[#377DFF] to-blue-600 text-transparent bg-clip-text">
-                Easy BAC.md
-              </span>
+              <Image src={easybacLogo} alt="Easy BAC.md" width={100} height={50} />
             </motion.div>
 
             {/* Desktop Menu */}

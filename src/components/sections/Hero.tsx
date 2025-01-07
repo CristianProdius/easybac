@@ -75,9 +75,10 @@ const Hero = () => {
           animate="visible"
           variants={containerVariants}
         >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
             {/* Left Content */}
-            <div className="space-y-8">
+            <div className="space-y-8 order-last lg:order-first text-center lg:text-left">
               <motion.div
                 variants={itemVariants}
                 className="inline-flex items-center bg-white px-4 py-2 rounded-full shadow-sm"
@@ -117,20 +118,7 @@ const Hero = () => {
                 >
                   Începe Gratuit
                 </motion.button>
-                {/*<motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center px-8 py-4 rounded-xl border-2 border-gray-200 hover:border-gray-300 transition-colors"
-              >
-                <svg
-                  className="w-6 h-6 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 0C4.477 0 0 4.477 0 10c0 5.523 4.477 10 10 10 5.523 0 10-4.477 10-10C20 4.477 15.523 0 10 0zm3.707 10.293l-4-4a1 1 0 00-1.414 1.414L11.586 11H6a1 1 0 100 2h5.586l-3.293 3.293a1 1 0 101.414 1.414l4-4a1 1 0 000-1.414z" />
-                </svg>
-                Vezi Cum Funcționează
-              </motion.button>*/}
+
               </motion.div>
 
               {/* Stats */}
@@ -159,7 +147,7 @@ const Hero = () => {
             </div>
 
             {/* Right Image */}
-            <motion.div className="relative" variants={imageVariants}>
+            <motion.div className="relative order-first lg:order-last" variants={imageVariants}>
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
