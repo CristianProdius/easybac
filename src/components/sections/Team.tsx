@@ -72,52 +72,52 @@ const Team = () => {
     {
       name: "Dionis",
       subject: "Istorie",
-      image: "/team/1.png",
+      image: "/team/1.jpg",
       description:
         "Mentor, olimpic republican, autor de cercetări și studii istorice",
     },
     {
       name: "Daniela",
       subject: "Matematică",
-      image: "/team/2.png",
+      image: "/team/7.jpg",
       description: "Mentor, olimpic republican, experiență pedagogică de 6 ani",
     },
     {
       name: "Ion",
       subject: "Limba română",
-      image: "/team/3.png",
+      image: "/team/4.jpg",
       description:
         "Mentor, olimpic republican, autor de cercetării și studii filologice",
     },
     {
       name: "Gabriela",
       subject: "Limba română",
-      image: "/team/3.png",
+      image: "/team/8.jpg",
       description: "Mentorul cursurilor pentru clasa a 9-a",
     },
     {
       name: "Roxana",
       subject: "Geografie",
-      image: "/team/3.png",
+      image: "/team/3.jpg",
       description:
         "Mentor, olimpic republican, profesor la Liceul Orizont din Chișinău",
     },
     {
       name: "Andrei",
       subject: "Chimie",
-      image: "/team/3.png",
+      image: "/team/6.jpg",
       description: "Mentor, olimpic internațional",
     },
     {
       name: "Irina",
       subject: "Biologie",
-      image: "/team/3.png",
+      image: "/team/2.jpg",
       description: "Mentor, olimpic republican, experiență pedagogică de 5 ani",
     },
     {
       name: "Maxim",
       subject: "Informatica",
-      image: "/team/3.png",
+      image: "/team/5.jpg",
       description: "Mentor, olimpic republican, programist IT",
     },
   ];

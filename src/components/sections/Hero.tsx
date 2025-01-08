@@ -161,7 +161,7 @@ const Hero = () => {
                 className="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-50 rounded-full"
               />
               <motion.img
-                src="/images/student-studying.png"
+                src="/team/9.jpg"
                 alt="student ce invata"
                 className="relative z-10 w-full rounded-2xl shadow-lg"
                 initial={{ opacity: 0, y: 20 }}

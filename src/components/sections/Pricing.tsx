@@ -183,7 +183,7 @@ const Courses = () => {
       description:
         "Recapitulează toate epocile istorice într-un timp record și rezolvă teste pe surse, hărți și eseuri",
       lessons: 17,
-      icon: "📚",
+      icon: "🏛️",
     },
     {
       name: "BAC la Limba și Literatura Română",
